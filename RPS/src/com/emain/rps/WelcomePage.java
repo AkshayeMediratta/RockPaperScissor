@@ -1,6 +1,5 @@
 package com.emain.rps;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -23,9 +22,8 @@ public class WelcomePage extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
 		}
 
-		Intent intent = new Intent();
 		Player player = getIntent().getParcelableExtra(Constants.PLAYER_PARCELABLE);
-		TextView textView = new TextView(this);
+		TextView textView = (TextView) findViewById(R.id.testView);
 		textView.setTextSize(40);
 		textView.setText("Welcome " + player.getUserId());
 

@@ -10,7 +10,7 @@
     tools:context="com.emain.rps.GamePage" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/game_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_page" />
@@ -55,5 +55,23 @@
         android:text="Draw" 
         android:onClick="draw" />
     
-    
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/default_string"
+	         />
+	     
+	    <Button
+	        android:id="@+id/button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Submit your Choice"
+	        />
+	    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="CPU is Choosing"
+	         />    
 </LinearLayout>

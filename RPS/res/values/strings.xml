@@ -17,5 +17,7 @@
     <string name="back">Back</string>
     <string name="game_page">Game Page</string>
     <string name="playAnother">Play Again</string>
+    <string name="default_string">THis is default string</string>
+    
    
 </resources>

@@ -9,6 +9,13 @@
     <string name="sexMale">Male</string>
     <string name="sexFemale">Female</string>
     <string name="title_activity_welcome_page">WelcomePage</string>
+    <string name="title_activity_second_page">SecondPage</string>
+    <string name="view_statistics">View your Statistics</string>
+    <string name="title_activity_statistics_page">StatisticsPage</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="title_activity_game_page">GamePage</string>
+    <string name="back">Back</string>
+    <string name="game_page">Game Page</string>
+    <string name="playAnother">Play Again</string>
+   
 </resources>

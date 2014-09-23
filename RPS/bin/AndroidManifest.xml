@@ -30,6 +30,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.emain.rps.MainActivity" />
         </activity>
+        <activity
+            android:name=".SecondPage"
+            android:label="@string/title_activity_second_page"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.emain.rps.MainActivity" />
+        </activity>
+        <activity
+            android:name=".StatisticsPage"
+            android:label="@string/title_activity_statistics_page" >
+        </activity>
+        <activity
+            android:name=".GamePage"
+            android:label="@string/title_activity_game_page" >
+        </activity>
     </application>
 
 </manifest>

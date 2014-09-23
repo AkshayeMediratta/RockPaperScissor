@@ -45,6 +45,10 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_ENTRIES);
 	}
 
+	public void updateUser(SQLiteDatabase db, Player player) {
+		db.execSQL("Update " + Constants.TABLE_NAME + " set " + FeedEntry.COLUMN_NAME_GAMES_WON + "=" + player.getNbOfWins() + COMMA_SEP + FeedEntry.COLUMN_NAME_GAMES_LOST + "=" + player.getNbOfLosses() + COMMA_SEP + FeedEntry.COLUMN_NAME_GAMES_TOTAL + "=" + player.getTotalNbofGames() + " where " + FeedEntry.COLUMN_NAME_USERID + "=" + "'" + player.getUserId() + "'");
+	}
+
 	public Player findUser(SQLiteDatabase db, String userName) {
 		Player player = null;
 		Cursor cursor = null;

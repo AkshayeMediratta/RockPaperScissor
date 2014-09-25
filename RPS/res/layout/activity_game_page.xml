@@ -31,47 +31,32 @@
         android:layout_alignBottom="@+id/playAnother"
         android:layout_alignParentRight="true"
         android:layout_marginRight="45dp"
-        android:text="@string/view_statistics"
-        android:onClick="view_statistics" />
+        android:onClick="view_statistics"
+        android:text="@string/view_statistics" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_string" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_string" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPU is Choosing" />
 
     <Button
-        android:id="@+id/win"
-        android:layout_width="wrap_content"
+        android:id="@+id/button"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
-        android:text="Win" 
-        android:onClick="win" />
-        
-    <Button
-        android:id="@+id/lose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lose"
-        android:onClick="lose" />
-    
-    <Button
-        android:id="@+id/draw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Draw" 
-        android:onClick="draw" />
-    
-	    <TextView
-	        android:id="@+id/textView1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/default_string"
-	         />
-	     
-	    <Button
-	        android:id="@+id/button"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Submit your Choice"
-	        />
-	    <TextView
-	        android:id="@+id/textView2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="CPU is Choosing"
-	         />    
+        android:layout_weight="0.44"
+        android:text="Submit" />
+
 </LinearLayout>

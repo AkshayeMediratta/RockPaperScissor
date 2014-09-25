@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.database.contracts.PlayerReaderContract.FeedEntry;
 import com.database.helper.PersonDbHelper;
@@ -84,31 +85,37 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
-	//Function that executes on clicking the Login button
+	// Function that executes on clicking the Login button
 	public void loginPlayer(View view) {
-		//TODO Add code for validating entered information
+		// TODO Add code for validating entered information
+		Boolean isValid = validateData();
+		if (isValid) {
+			// Extract the user ID from the entered information
+			String userId = extractPlayerData();
 
-		//Extract the user ID from the entered information
-		String userId = extractPlayerData();
+			PersonDbHelper pDbHelper = new PersonDbHelper(getBaseContext());
+			SQLiteDatabase personDb = pDbHelper.getWritableDatabase();
 
-		PersonDbHelper pDbHelper = new PersonDbHelper(getBaseContext());
-		SQLiteDatabase personDb = pDbHelper.getWritableDatabase();
+			// Search the database to check if the user exists
+			Player player = pDbHelper.findUser(personDb, userId);
 
-		//Search the database to check if the user exists
-		Player player = pDbHelper.findUser(personDb, userId);
+			// If user does not exist, insert new Player data
+			if (null == player) {
+				player = new Player();
+				player.setUserId(userId);
+				insertNewPlayerData(personDb, userId);
 
-		//If user does not exist, insert new Player data
-		if (null == player) {
-			player = new Player();
-			player.setUserId(userId);
-			insertNewPlayerData(personDb, userId);
+			}
 
+			Intent intent = new Intent(this, SecondPage.class);
+			intent.putExtra(Constants.PLAYER_PARCELABLE, player);
+			startActivity(intent);
+			finish();
+			System.exit(0);
+
+		} else {
+			Toast.makeText(getApplicationContext(), "Please enter a name, a valid age and select your sex. ", Toast.LENGTH_LONG).show();
 		}
-
-		Intent intent = new Intent(this, SecondPage.class);
-		intent.putExtra(Constants.PLAYER_PARCELABLE, player);
-		startActivity(intent);
-
 	}
 
 	private String extractPlayerData() {
@@ -128,5 +135,20 @@ public class MainActivity extends ActionBarActivity {
 
 		// Insert the new row, returning the primary key value of the new row
 		return personDb.insert(FeedEntry.TABLE_NAME, null, values);
+	}
+
+	private boolean validateData() {
+		RadioGroup sex = (RadioGroup) findViewById(R.id.sex);
+		try {
+			if (null == ((EditText) findViewById(R.id.firstName)).getText() || null == ((EditText) findViewById(R.id.firstName)).getText().toString() || null == ((EditText) findViewById(R.id.age)).getText() || null == ((EditText) findViewById(R.id.age)).getText().toString() || null == ((RadioButton) this.findViewById(sex.getCheckedRadioButtonId())).getText() || null == ((RadioButton) this.findViewById(sex.getCheckedRadioButtonId())).getText().toString()) {
+				return false;
+			}
+
+			Integer.parseInt(((EditText) findViewById(R.id.age)).getText().toString());
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
 	}
 }

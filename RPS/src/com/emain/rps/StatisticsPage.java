@@ -21,15 +21,15 @@ public class StatisticsPage extends ActionBarActivity {
 		Player player = getIntent().getParcelableExtra(Constants.PLAYER_PARCELABLE);
 		if (null != player && null != player.getUserId()) {
 			TextView welcome = (TextView) findViewById(R.id.welcomeText);
-			welcome.setText("Hi! " + player.getUserId() + " Welcome to the Rock Paper Scissor game. Your statistics are shown below: ");
+			welcome.setText("Welcome to the Rock Paper Scissor game. Your statistics are shown below: ");
 			TextView totalGames = (TextView) findViewById(R.id.totalGames);
-			totalGames.setText(Integer.toString(player.getTotalNbofGames()));
+			totalGames.setText("Total Played: " + Integer.toString(player.getTotalNbofGames()));
 			TextView nbWins = (TextView) findViewById(R.id.nbWins);
-			nbWins.setText(Integer.toString(player.getNbOfWins()));
+			nbWins.setText("Wins: " + Integer.toString(player.getNbOfWins()));
 			TextView nbLosses = (TextView) findViewById(R.id.nbLosses);
-			nbLosses.setText(Integer.toString(player.getNbOfLosses()));
+			nbLosses.setText("Lost: " + Integer.toString(player.getNbOfLosses()));
 			TextView nbDraws = (TextView) findViewById(R.id.nbDraws);
-			nbDraws.setText(Integer.toString(player.getTotalNbofGames() - player.getNbOfWins() - player.getNbOfLosses()));
+			nbDraws.setText("Draws: " + Integer.toString(player.getTotalNbofGames() - player.getNbOfWins() - player.getNbOfLosses()));
 		}
 	}
 
@@ -57,6 +57,8 @@ public class StatisticsPage extends ActionBarActivity {
 		Player player = getIntent().getParcelableExtra(Constants.PLAYER_PARCELABLE);
 		intent.putExtra(Constants.PLAYER_PARCELABLE, player);
 		startActivity(intent);
+		finish();
+		System.exit(0);
 
 	}
 }

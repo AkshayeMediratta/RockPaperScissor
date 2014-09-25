@@ -41,6 +41,8 @@ public class GamePage extends ActionBarActivity {
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		mShakeDetector = new ShakeDetector();
+		TextView tx = (TextView) findViewById(R.id.textView1);
+		tx.setText("The default choice is Rock. To change your input, shake the phone.");
 		mShakeDetector.setOnShakeListener(new OnShakeListener() {
 
 			@Override
@@ -49,13 +51,13 @@ public class GamePage extends ActionBarActivity {
 				 * The following method, "handleShakeEvent(count):" is a stub // method you would use to setup whatever you want done once the device has been shook.
 				 */
 				TextView tx = (TextView) findViewById(R.id.textView1);
-				if (count % 3 == 0)
-					tx.setText("Your selection is Rock.\n\n\nTo select SCISSOR shake again.");
-				else if (count % 3 == 1)
-					tx.setText("Your selection is Scissor.\n\n\nTo select PAPER shake again.");
-				else if (count % 3 == 2)
-					tx.setText("Your selection is Paper.\n\n\nTo select ROCK shake again.");
 
+				if (count % 3 == 0)
+					tx.setText("Your selection is Rock.\nTo select SCISSOR shake again.");
+				else if (count % 3 == 1)
+					tx.setText("Your selection is Scissor.\nTo select PAPER shake again.");
+				else if (count % 3 == 2)
+					tx.setText("Your selection is Paper.\nTo select ROCK shake again.");
 				counter = count;
 			}
 		});
@@ -66,11 +68,8 @@ public class GamePage extends ActionBarActivity {
 			choice = "SCISSOR";
 		else if (counter % 3 == 2)
 			choice = "PAPER";
-		String message = "Your Input : " + choice + "\n to submit press 'SUBMIT' button";
-		TextView txM = (TextView) findViewById(R.id.textView1);
-		txM.setText(message);
-
 		addListnerOnButton();
+
 	}
 
 	public void addListnerOnButton() {
@@ -92,7 +91,6 @@ public class GamePage extends ActionBarActivity {
 				TextView txM2 = (TextView) findViewById(R.id.textView2);
 				if (Random == 0)
 					cpuChoice = "CPU Chose : ROCK";
-
 				else if (Random == 1)
 					cpuChoice = "CPU Chose : SCISSOR";
 				else if (Random == 2)
@@ -117,6 +115,8 @@ public class GamePage extends ActionBarActivity {
 					txr.setText("You win.");
 					win();
 				}
+				Button btn = (Button) findViewById(R.id.button);
+				btn.setEnabled(false);
 			}
 		});
 
@@ -142,12 +142,14 @@ public class GamePage extends ActionBarActivity {
 	}
 
 	public void playAnother(View view) {
-		Intent intent = new Intent(this, GamePage.class);
+		Intent intent = getIntent();
 		intent.putExtra(Constants.PLAYER_PARCELABLE, player);
 		PersonDbHelper pDbHelper = new PersonDbHelper(getBaseContext());
 		SQLiteDatabase personDb = pDbHelper.getWritableDatabase();
 		pDbHelper.updateUser(personDb, player);
 		startActivity(intent);
+		finish();
+		System.exit(0);
 
 	}
 
@@ -158,21 +160,9 @@ public class GamePage extends ActionBarActivity {
 		SQLiteDatabase personDb = pDbHelper.getWritableDatabase();
 		pDbHelper.updateUser(personDb, player);
 		startActivity(intent);
+		finish();
+		System.exit(0);
 
-	}
-
-	public void win(View view) {
-		player.setNbOfWins(player.getNbOfWins() + 1);
-		player.setTotalNbofGames(player.getTotalNbofGames() + 1);
-	}
-
-	public void lose(View view) {
-		player.setNbOfLosses(player.getNbOfLosses() + 1);
-		player.setTotalNbofGames(player.getTotalNbofGames() + 1);
-	}
-
-	public void draw(View view) {
-		player.setTotalNbofGames(player.getTotalNbofGames() + 1);
 	}
 
 	public void win() {
@@ -201,5 +191,9 @@ public class GamePage extends ActionBarActivity {
 		// Add the following line to unregister the Sensor Manager onPause
 		mSensorManager.unregisterListener(mShakeDetector);
 		super.onPause();
+	}
+
+	@Override
+	public void onBackPressed() {
 	}
 }

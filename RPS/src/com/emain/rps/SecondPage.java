@@ -42,6 +42,9 @@ public class SecondPage extends ActionBarActivity {
 		Player player = getIntent().getParcelableExtra(Constants.PLAYER_PARCELABLE);
 		intent.putExtra(Constants.PLAYER_PARCELABLE, player);
 		startActivity(intent);
+		finish();
+		System.exit(0);
+
 	}
 
 	public void startGame(View view) {
@@ -49,7 +52,13 @@ public class SecondPage extends ActionBarActivity {
 		Player player = getIntent().getParcelableExtra(Constants.PLAYER_PARCELABLE);
 		intent.putExtra(Constants.PLAYER_PARCELABLE, player);
 		startActivity(intent);
+		finish();
+		System.exit(0);
 
 	}
 
+	public void quit(View view) {
+		finish();
+		System.exit(0);
+	}
 }
